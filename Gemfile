@@ -20,3 +20,7 @@ group :test, :development do
   gem "rspec-rails", "~> 2.0"
   gem "sqlite3"
 end
+
+group :production do
+  gem 'pg'
+end
