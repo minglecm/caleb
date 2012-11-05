@@ -17,6 +17,7 @@ class Caleb.Views.Contents.AboutView extends Caleb.Views.ContentView
 
   render: ->
     super
-    @aboutJumbotron ||= new Caleb.Views.Contents.Jumbotron.AboutView()
+    @$('.jumbotron').html('')
+    @aboutJumbotron = new Caleb.Views.Contents.Jumbotron.AboutView()
     @$('.jumbotron').html(@aboutJumbotron.render().el)
     @
