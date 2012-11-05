@@ -1,1 +1,28 @@
-test
+%h3 Get In Touch
+%br
+
+%table.table
+  %tr
+    %td
+      %span.label.label-info email / iMessage
+    %td
+      %a{:href => 'mailto:me@caleb.io'} me@caleb.io
+  %tr
+    %td
+      %span.label.label-info phone / text
+    %td 828-460-3231
+  %tr
+    %td
+      %br
+        %strong Social
+    %td
+  %tr
+    %td
+      %a{:href => 'http://github.caleb.io', :target => '_blank'} Github
+    %td
+      %a{:href => 'http://twitter.caleb.io', :target => '_blank'} Twitter
+  %tr
+    %td
+      %a{:href => 'http://facebook.caleb.io', :target => '_blank'} Facebook
+    %td
+      %a{:href => 'http://coderwall.caleb.io', :target => '_blank'} Coderwall

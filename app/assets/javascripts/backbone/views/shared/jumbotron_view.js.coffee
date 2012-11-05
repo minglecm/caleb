@@ -11,6 +11,7 @@ class Caleb.Views.Contents.JumbotronView extends Backbone.View
 
   initialize: ->
     @words = _.shuffle(@words)
+    @showingAll = false
 
   render: ->
     $(@el).html(@template({wordTemplate: @wordTemplate, slogan: @slogan}))
@@ -21,10 +22,29 @@ class Caleb.Views.Contents.JumbotronView extends Backbone.View
 
     return this
 
+  showAll: ->
+    @$el.html('')
+    @showingAll = true
+    for word in @words
+      # create h1
+      # measure size of word
+      $element = $('<h1 />').addClass('title').html('<span></span>')
+      $span    = $element.find('span')
+      fontSize = 72
+      while @testFontSize( word, fontSize ) > 690
+        fontSize--
+      $element.css('font-size', "#{fontSize}px")
+      $span.css('color', '#'+Math.floor(Math.random()*16777215).toString(16))
+      $span.text(word)
+
+      @$el.append($element)
+      $element.fadeIn()
+
   getWordElement: ->
     @$('.title span')
 
   wordClick: =>
+    return if @showingAll
     currentWord = @getWordElement().text()
     currentIndex = _.indexOf(@words, currentWord)
     next = currentIndex + 1

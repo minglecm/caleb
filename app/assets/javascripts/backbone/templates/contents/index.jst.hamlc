@@ -10,4 +10,4 @@
       %a.enjoy{:href => '#'} Enjoy
 
     %li.pull-right
-      %a{:href => '#'} Click the colored word above to cycle.
+      %a{:href => '#'} Click the colored word above to see more.
