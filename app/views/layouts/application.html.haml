@@ -1,0 +1,44 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "Caleb"
+    = csrf_meta_tags
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    = stylesheet_link_tag "application", :media => "all"
+    %link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
+    %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
+    %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
+    %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
+    %link(href="images/favicon.ico" rel="shortcut icon")
+    = javascript_include_tag "application"
+
+
+  %body
+    .container-narrow
+      .masthead
+        %ul.nav.nav-pills.pull-right.navigation-tabs
+          %li.index= link_to 'Home', '#'
+          %li.blog= link_to 'Blog', 'http://www.dentafrice.com', :target => '_blank'
+          %li.about= link_to 'About', '#about'
+          %li.contact= link_to 'Contact', '#contact'
+        %h3.muted.site-name Caleb Mingle
+      %hr
+
+      = yield
+
+      %noscript
+        I make things that rely on Javascript.  Javascript is a basic requirement to use the web these days.
+        %br
+        I use Backbone.js that requires Javascript to load pages on this site.
+
+      %hr
+
+      .footer
+        %p
+          This page is made possible by the folks here,
+          = link_to('Credits', '#credits', :class => 'credits') + '.'

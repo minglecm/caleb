@@ -1,0 +1,4 @@
+%h1.title
+  :plaintext
+    #{@wordTemplate.replace('{placeholder}', '<span></span>')}
+%p.lead= @slogan

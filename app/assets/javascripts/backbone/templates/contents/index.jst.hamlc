@@ -1,0 +1,13 @@
+.tabbable.tabs-below
+  .jumbotron
+
+  %ul.nav.nav-tabs.jumbotron-nav
+    %li
+      %a.make{:href => '#'} Make
+    %li
+      %a.use{:href => '#'} Use
+    %li
+      %a.enjoy{:href => '#'} Enjoy
+
+    %li.pull-right
+      %a{:href => '#'} Click the colored word above to cycle.
