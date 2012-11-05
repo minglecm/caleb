@@ -3,12 +3,12 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'thin'
 gem 'haml-rails'
+gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
 gem 'rails-backbone'
 
 group :assets do
-  gem 'less-rails'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer', :platforms => :ruby
