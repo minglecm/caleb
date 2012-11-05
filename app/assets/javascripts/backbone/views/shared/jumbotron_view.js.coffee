@@ -16,18 +16,35 @@ class Caleb.Views.Contents.JumbotronView extends Backbone.View
   render: ->
     $(@el).html(@template({wordTemplate: @wordTemplate, slogan: @slogan}))
 
-    @changeWord('- loading -')
+    @getWordElement().text('- loading -')
+    @getWordElement().parent().css('font-size', @calculateFontSize('- loading -') + 'px')
     @showTitle =>
-      @changeWord(@words[0])
+      @wordClick()
 
     return this
+
+  wordClick: =>
+    return if @showingAll
+    currentWord = @getWordElement().text()
+    currentIndex = _.indexOf(@words, currentWord)
+    next = currentIndex + 1
+    next = 0 if next > (@words.length - 1)
+    fontSize = @calculateFontSize(@words[next])
+    @getWordElement().slideUp =>
+      @animateFontSize fontSize, =>
+        @setRandomColor()
+        @getWordElement().text(@words[next])
+        @getWordElement().slideDown()
+
+  setRandomColor: ->
+    color = '#'+Math.floor(Math.random()*16777215).toString(16)
+    Utils.changeHeaderColor(color)
+    @getWordElement().css('color', color)
 
   showAll: ->
     @$el.html('')
     @showingAll = true
     for word in @words
-      # create h1
-      # measure size of word
       $element = $('<h1 />').addClass('title').html('<span></span>')
       $span    = $element.find('span')
       fontSize = 72
@@ -43,41 +60,6 @@ class Caleb.Views.Contents.JumbotronView extends Backbone.View
   getWordElement: ->
     @$('.title span')
 
-  wordClick: =>
-    return if @showingAll
-    currentWord = @getWordElement().text()
-    currentIndex = _.indexOf(@words, currentWord)
-    next = currentIndex + 1
-    next = 0 if next > (@words.length - 1)
-    @changeWord @words[next]
-
-  setAndAnimate: (newWord, callback) ->
-    $element = @getWordElement()
-
-    actions = =>
-      color = '#'+Math.floor(Math.random()*16777215).toString(16)
-      Utils.changeHeaderColor(color)
-      $element.text(newWord)
-      $element.css('color', color)
-      $element.slideDown callback
-
-    if $element.text() == ''
-      $element.slideUp()
-      actions()
-    else
-      $element.slideUp actions
-
-  changeWord: (newWord) ->
-    fontSize = 72
-    while @testFontSize( newWord, fontSize ) > 690
-      fontSize--
-
-    if fontSize > parseInt(@getWordElement().parent().css('font-size').replace('px', ''), 10)
-      @setAndAnimate newWord, => @getWordElement().parent().animate({'fontSize': "#{fontSize}px"})
-    else
-      @getWordElement().parent().animate {'fontSize': "#{fontSize}px"}, =>
-        @setAndAnimate newWord, ->
-
   testFontSize: (word, fontSize) ->
     container = $('<span />').text(@wordTemplate.replace('{placeholder}', word))
     container.css('font-size', fontSize + 'px')
@@ -88,5 +70,14 @@ class Caleb.Views.Contents.JumbotronView extends Backbone.View
     container.remove()
     width
 
-  showTitle: (callback) =>
+  calculateFontSize: (newWord) ->
+    fontSize = 72
+    while @testFontSize( newWord, fontSize ) > 690
+      fontSize--
+    fontSize
+
+  showTitle: (callback) ->
     @getWordElement().parent().fadeIn(callback)
+
+  animateFontSize: (fontSize, finishedCallback = ->) ->
+    @getWordElement().parent().animate({'fontSize': "#{fontSize}px"}, finishedCallback)

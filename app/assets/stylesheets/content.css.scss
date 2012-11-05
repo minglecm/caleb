@@ -55,3 +55,9 @@ body {
 .marketing p + h4 {
   margin-top: 28px;
 }
+
+.site-name {
+  a:hover {
+    text-decoration: none;
+  }
+}

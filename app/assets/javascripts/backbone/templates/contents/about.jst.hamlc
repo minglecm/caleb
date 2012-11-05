@@ -2,5 +2,5 @@
   .jumbotron
 
 %br
-%a{:href => '#', :class => 'btn btn-small see-all'} See All
+%a{:href => '#', :class => 'btn btn-small see-all'} Show All
 %a{:href => '#', :class => 'btn btn-small reset'} Reset

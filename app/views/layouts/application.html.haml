@@ -26,7 +26,8 @@
           %li.blog= link_to 'Blog', 'http://www.dentafrice.com', :target => '_blank'
           %li.about= link_to 'About', '#about'
           %li.contact= link_to 'Contact', '#contact'
-        %h3.muted.site-name Caleb Mingle
+        %h3.muted.site-name
+          %a{:href => '#index'} Caleb Mingle
       %hr
 
       = yield
