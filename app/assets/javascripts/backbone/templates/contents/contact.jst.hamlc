@@ -3,13 +3,11 @@
 
 %table.table
   %tr
-    %td
-      %span.label.label-info email / iMessage
+    %td email / iMessage
     %td
       %a{:href => 'mailto:me@caleb.io'} me@caleb.io
   %tr
-    %td
-      %span.label.label-info phone / text
+    %td phone / text
     %td 828-460-3231
   %tr
     %td
