@@ -2,8 +2,8 @@ class Caleb.Routers.ContentsRouter extends Backbone.Router
   routes:
     "index"   : "index"
     "about"   : "about"
-    "credits" : "credits"
     "contact" : "contact"
+    "site"    : "site"
     '*path'   : 'index'
   
   index: ->
@@ -16,9 +16,10 @@ class Caleb.Routers.ContentsRouter extends Backbone.Router
     $('#contents').html(@view.render().el)
     @updateTab('about')
 
-  credits: ->
-    @view = new Caleb.Views.Contents.CreditView()
+  site: ->
+    @view = new Caleb.Views.Contents.SiteView()
     $('#contents').html(@view.render().el)
+    @updateTab('site')
 
   contact: ->
     @view = new Caleb.Views.Contents.ContactView()

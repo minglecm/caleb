@@ -1,0 +1,15 @@
+%h3 How this site works
+%br
+%p I built this site one afternoon in October.  I have wanted to build a single-page application for awhile and learn some new techniques.
+
+%p The idea to display information in sliders just came to me, and allowed me to further my Javascript knowledge.
+%p This site uses a variety of new technology.
+%ul
+  %li haml_coffee_assets
+  %li backbone-rails
+  %li backbone.js
+  %li underscore.js
+
+%p I use a lot of these technologies at work, but really wanted to experiment with using HAML as my Backbone views.
+%br
+%a{:href => 'http://github.com/dentafrice/caleb', :target => '_blank', :class => 'btn'} View Source on Github
