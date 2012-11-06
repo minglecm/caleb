@@ -17,7 +17,7 @@ class Caleb.Views.Contents.JumbotronView extends Backbone.View
     $(@el).html(@template({wordTemplate: @wordTemplate, slogan: @slogan}))
 
     @getWordElement().text('- loading -')
-    @getWordElement().parent().css('font-size', @calculateFontSize('- loading -') + 'px')
+    @getWordElement().closest('h1').css('font-size', @calculateFontSize('- loading -') + 'px')
     @showTitle =>
       @wordClick()
 
@@ -30,11 +30,11 @@ class Caleb.Views.Contents.JumbotronView extends Backbone.View
     next = currentIndex + 1
     next = 0 if next > (@words.length - 1)
     fontSize = @calculateFontSize(@words[next])
-    @getWordElement().slideUp =>
+    @getWordElement().fadeOut =>
       @animateFontSize fontSize, =>
         @setRandomColor()
         @getWordElement().text(@words[next])
-        @getWordElement().slideDown()
+        @getWordElement().fadeIn()
 
   setRandomColor: ->
     color = '#'+Math.floor(Math.random()*16777215).toString(16)
@@ -77,7 +77,7 @@ class Caleb.Views.Contents.JumbotronView extends Backbone.View
     fontSize
 
   showTitle: (callback) ->
-    @getWordElement().parent().fadeIn(callback)
+    @getWordElement().closest('h1').fadeIn(callback)
 
   animateFontSize: (fontSize, finishedCallback = ->) ->
-    @getWordElement().parent().animate({'fontSize': "#{fontSize}px"}, finishedCallback)
+    @getWordElement().closest('h1').animate({'fontSize': "#{fontSize}px"}, finishedCallback)

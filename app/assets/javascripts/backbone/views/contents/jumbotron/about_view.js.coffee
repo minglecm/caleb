@@ -1,10 +1,10 @@
 Caleb.Views.Contents.Jumbotron ||= {}
 
 class Caleb.Views.Contents.Jumbotron.AboutView extends Caleb.Views.Contents.JumbotronView
-  wordTemplate: "{placeholder}."
+  wordTemplate: "{placeholder}&nbsp;" # nbsp is needed to keep div below from jumping up.
   slogan: "<span style='color: lightgrey;'>click above to learn more.</span>"
 
-  words: [
+  words: _.map([
     "I'm part of the engineering team at Mavenlink"
     "I'm married to my beautiful wife, Paige"
     "I'm 19 years old, and have accomplished a lot for my age"
@@ -15,4 +15,4 @@ class Caleb.Views.Contents.Jumbotron.AboutView extends Caleb.Views.Contents.Jumb
     "I love optimization"
     "I barely made it through high school"
     "I love learning about things that interest me"
-  ]
+  ], (word) -> "#{word}.")
