@@ -30,20 +30,19 @@ class Caleb.Views.Contents.JumbotronView extends Backbone.View
     next = currentIndex + 1
     next = 0 if next > (@words.length - 1)
     fontSize = @calculateFontSize(@words[next])
-    @getWordElement().animate {opacity: 0, height: 0}, =>
-
+    @getWordElement().animate {opacity: 0}, =>
       actions = =>
         @setRandomColor()
         @getWordElement().text(@words[next])
 
       if fontSize > parseInt(@getWordElement().closest('h1').css('font-size').replace('px', ''), 10)
         actions()
-        @getWordElement().animate {opacity: 1, height: fontSize}, =>
-          @animateFontSize fontSize
+        @getWordElement().animate {opacity: 1}, 800
+        @animateFontSize fontSize
       else
         @animateFontSize fontSize, =>
           actions()
-          @getWordElement().animate {opacity: 1, height: fontSize}
+          @getWordElement().animate {opacity: 1}, 700
 
   setRandomColor: ->
     color = '#'+Math.floor(Math.random()*16777215).toString(16)
