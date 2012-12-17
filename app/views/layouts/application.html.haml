@@ -17,7 +17,7 @@
     %link(href="images/favicon.ico" rel="shortcut icon")
     = javascript_include_tag "application"
 
-    - if params[:modern] != "90"
+    - if params[:modern].present? && params[:modern] != "90"
       %center.colored
         %h1 nice try!
         %p Simply altering the URL doesn't take you back in time :)
