@@ -17,8 +17,57 @@
     %link(href="images/favicon.ico" rel="shortcut icon")
     = javascript_include_tag "application"
 
+    - if params[:modern] != "90"
+      %center.colored
+        %h1 nice try!
+        %p Simply altering the URL doesn't take you back in time :)
+
+    - if params[:modern]
+      :css
+        body {
+          font-family: "#{@font}";
+          background-color: black;
+          color: #{@color};
+          background-image: url(#{@background});
+        }
+
+        center.colored {
+          background-color: black;
+        }
+
+        .top {
+          width: 100%;
+          height: 20px;
+          text-align: center;
+          margin-bottom: 30px;
+        }
+
+        a {
+          font-family: "Comic Sans MS";
+        }
+
+        span {
+          font-family: "Courier"
+        }
+
+        .guys {
+          position: fixed;
+          top: 0;
+          width: 200px;
+        }
+
+        .container-narrow {
+          background-color: black;
+          border: 1px solid green;
+        }
 
   %body
+    - if params[:modern]
+      .top
+        %img(src="http://biofitweb.cox-thurmond.net/image_files/under_construction_banner.jpg")
+      .guys
+        %img(src="http://www.patronconstruction.net/UnderConstructionAnimated.gif")
+
     .container-narrow
       .masthead
         %ul.nav.nav-pills.pull-right.navigation-tabs
@@ -28,8 +77,17 @@
           %li.contact= link_to 'Contact', '#contact'
           %li.blog= link_to 'Blog', 'http://www.dentafrice.com', :target => '_blank'
         %h3.muted.site-name
-          %a{:href => '#index'} Caleb Mingle
+          %a{:href => '#index'}
+            - if params[:modern]
+              %marquee(direction="left" scrollamount="30")
+                %img(src="/images/logo.gif" width="200")
+            - else
+              Caleb Mingle
       %hr
+
+      - if params[:modern]
+        %center
+          %img.merry(src="http://www.mikesfreegifs.com/main4/christmas/XMasNeon.gif")
 
       = yield
 
@@ -42,3 +100,6 @@
 
       .footer
         %p Copyright &copy; 2012 Caleb Mingle.
+        - if params[:modern]
+          %img(src="http://upload.wikimedia.org/wikipedia/en/thumb/0/03/Internet_Explorer_5_logo.png/300px-Internet_Explorer_5_logo.png" width="50")
+          %img(src="http://www.e-zeeinternet.com/count.php?page=900176&style=LED_r&nbdigits=5")
